@@ -1,0 +1,40 @@
+{
+  "name": "ninjaportal/shadow-theme",
+  "description": "Blade + Alpine.js developer portal theme for NinjaPortal",
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": "^8.2",
+    "chillerlan/php-qrcode": "^5.0",
+    "spatie/laravel-package-tools": "^1.16",
+    "illuminate/contracts": "^11.0||^12.0",
+    "illuminate/support": "^11.0||^12.0",
+    "ninjaportal/portal": "^0.1 || ^1.0 || dev-main || dev-master"
+  },
+  "suggest": {
+    "ninjaportal/portal-mfa": "Adds MFA setup and login challenge support in the theme"
+  },
+  "autoload": {
+    "psr-4": {
+      "NinjaPortal\\Shadow\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "NinjaPortal\\Shadow\\Tests\\": "tests/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "NinjaPortal\\Shadow\\ShadowServiceProvider"
+      ]
+    }
+  },
+  "scripts": {
+    "format": "vendor/bin/pint",
+    "format:test": "vendor/bin/pint --test"
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}
