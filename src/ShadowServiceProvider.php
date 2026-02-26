@@ -4,6 +4,7 @@ namespace NinjaPortal\Shadow;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
+use NinjaPortal\Shadow\Commands\InstallCommand;
 use NinjaPortal\Shadow\Http\Middleware\RedirectIfShadowThemeAuthenticated;
 use NinjaPortal\Shadow\Http\Middleware\RequireShadowThemeAuth;
 use NinjaPortal\Shadow\Http\Middleware\ResolveShadowThemeUser;
@@ -26,7 +27,8 @@ class ShadowServiceProvider extends PackageServiceProvider
             ->name('shadow-theme')
             ->hasConfigFile('shadow-theme')
             ->hasViews()
-            ->hasRoute('web');
+            ->hasRoute('web')
+            ->hasCommand(InstallCommand::class);
     }
 
     public function register(): void
