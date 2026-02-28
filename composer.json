@@ -9,7 +9,7 @@
     "spatie/laravel-package-tools": "^1.16",
     "illuminate/contracts": "^11.0||^12.0",
     "illuminate/support": "^11.0||^12.0",
-    "ninjaportal/portal": "^0.1 || ^1.0 || dev-main || dev-master"
+    "ninjaportal/portal": "^0.1"
   },
   "suggest": {
     "ninjaportal/portal-mfa": "Adds MFA setup and login challenge support in the theme"
