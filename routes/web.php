@@ -27,6 +27,7 @@ Route::middleware(array_merge($middleware, ['shadow.user']))
         Route::get('/', HomeController::class)->name('home');
 
         Route::get('/products', [ProductsController::class, 'index'])->name('products.index');
+        Route::get('/products/{slug}/spec', [ProductsController::class, 'spec'])->name('products.spec');
         Route::get('/products/{slug}', [ProductsController::class, 'show'])->name('products.show');
 
         Route::middleware('shadow.guest')->group(function () {

@@ -41,7 +41,25 @@ Shadow Theme expects the NinjaPortal core to be available and configured:
 - `ninjaportal/portal`
 - `lordjoo/laraapigee` (used by portal for Apigee-backed app/credential operations)
 
-### 3. Install frontend dependencies (daisyUI + Alpine)
+### 3. Run the Shadow Theme installer
+
+```bash
+php artisan shadow:install --publish-config
+```
+
+What it does:
+
+- optionally publishes the package config/views
+- checks Portal settings storage (via `SettingServiceInterface`)
+- seeds missing branding/runtime settings used by the theme (without overwriting existing values)
+  - `portal.name`
+  - `portal.tagline`
+  - `portal.support_email`
+  - `shadow.branding.logo_text`
+  - `branding.primary_color`
+  - `branding.secondary_color`
+
+### 4. Install frontend dependencies (daisyUI + Alpine)
 
 ```bash
 npm install alpinejs daisyui
@@ -84,6 +102,8 @@ php artisan vendor:publish --tag=shadow-theme-config
 Main config file:
 
 - `config/shadow-theme.php`
+
+Shadow Theme will prefer Portal runtime settings (loaded from DB by the Portal package) for branding values when present.
 
 ### Common env keys
 

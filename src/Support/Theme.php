@@ -43,7 +43,14 @@ class Theme
      */
     public function branding(): array
     {
-        return (array) config('shadow-theme.branding', []);
+        $branding = (array) config('shadow-theme.branding', []);
+
+        return [
+            'name' => (string) (config('portal.name') ?? $branding['name'] ?? config('app.name', 'NinjaPortal')),
+            'tagline' => (string) (config('portal.tagline') ?? $branding['tagline'] ?? ''),
+            'logo_text' => (string) (config('shadow.branding.logo_text') ?? $branding['logo_text'] ?? 'Shadow'),
+            'support_email' => (string) (config('portal.support_email') ?? $branding['support_email'] ?? ''),
+        ];
     }
 
     /**
@@ -51,7 +58,12 @@ class Theme
      */
     public function palette(): array
     {
-        return (array) config('shadow-theme.theme', []);
+        $palette = (array) config('shadow-theme.theme', []);
+
+        $palette['accent_color'] = (string) (config('branding.primary_color') ?? ($palette['accent_color'] ?? '#22d3ee'));
+        $palette['accent_color_2'] = (string) (config('branding.secondary_color') ?? ($palette['accent_color_2'] ?? '#38bdf8'));
+
+        return $palette;
     }
 
     public function locale(): string
