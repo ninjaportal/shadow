@@ -44,12 +44,13 @@ Shadow Theme expects the NinjaPortal core to be available and configured:
 ### 3. Run the Shadow Theme installer
 
 ```bash
-php artisan shadow:install --publish-config --publish-assets
+php artisan shadow:install --publish-config
 ```
 
 What it does:
 
-- optionally publishes the package config, assets, and views
+- publishes the pre-built package assets by default
+- optionally publishes the package config and views
 - checks Portal settings storage (via `SettingServiceInterface`)
 - seeds missing branding/runtime settings used by the theme (without overwriting existing values)
   - `portal.name`
@@ -65,6 +66,12 @@ This publishes ready-to-use assets to:
 - `public/vendor/shadow-theme/shadow-theme.js`
 
 When these files exist, Shadow Theme will load them automatically.
+
+If you need to skip asset publishing for any reason:
+
+```bash
+php artisan shadow:install --without-assets
+```
 
 ### 4. Install frontend dependencies (optional if you use published assets)
 

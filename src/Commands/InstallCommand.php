@@ -11,7 +11,7 @@ class InstallCommand extends Command
 {
     protected $signature = 'shadow:install
         {--publish-config : Publish the Shadow Theme config file}
-        {--publish-assets : Publish the pre-built Shadow Theme frontend assets}
+        {--without-assets : Skip publishing the pre-built Shadow Theme frontend assets}
         {--publish-views : Publish the Shadow Theme Blade views for customization}';
 
     protected $description = 'Install the Shadow Theme package and seed branding settings';
@@ -27,7 +27,7 @@ class InstallCommand extends Command
             ]);
         }
 
-        if ((bool) $this->option('publish-assets')) {
+        if (! (bool) $this->option('without-assets')) {
             $this->call('vendor:publish', [
                 '--provider' => ShadowServiceProvider::class,
                 '--tag' => 'shadow-theme-assets',
