@@ -28,6 +28,7 @@ class ShadowServiceProvider extends PackageServiceProvider
             ->hasConfigFile('shadow-theme')
             ->hasViews()
             ->hasRoute('web')
+            ->hasAssets()
             ->hasCommand(InstallCommand::class);
     }
 
@@ -70,6 +71,7 @@ class ShadowServiceProvider extends PackageServiceProvider
                 'locale' => $theme->locale(),
                 'direction' => $theme->direction(),
                 'isRtl' => $theme->isRtl(),
+                'usePublishedAssets' => $theme->usesPublishedAssets(),
                 'branding' => $theme->branding(),
                 'palette' => $theme->palette(),
                 'routePrefix' => $theme->routePrefix(),

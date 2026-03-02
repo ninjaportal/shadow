@@ -3,6 +3,10 @@
 return [
     'enabled' => env('SHADOW_THEME_ENABLED', true),
 
+    'assets' => [
+        'prefer_published' => (bool) env('SHADOW_THEME_PREFER_PUBLISHED_ASSETS', true),
+    ],
+
     'routes' => [
         'prefix' => env('SHADOW_THEME_ROUTE_PREFIX', ''),
         'middleware' => ['web'],

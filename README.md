@@ -44,12 +44,12 @@ Shadow Theme expects the NinjaPortal core to be available and configured:
 ### 3. Run the Shadow Theme installer
 
 ```bash
-php artisan shadow:install --publish-config
+php artisan shadow:install --publish-config --publish-assets
 ```
 
 What it does:
 
-- optionally publishes the package config/views
+- optionally publishes the package config, assets, and views
 - checks Portal settings storage (via `SettingServiceInterface`)
 - seeds missing branding/runtime settings used by the theme (without overwriting existing values)
   - `portal.name`
@@ -59,7 +59,14 @@ What it does:
   - `branding.primary_color`
   - `branding.secondary_color`
 
-### 4. Install frontend dependencies (daisyUI + Alpine)
+This publishes ready-to-use assets to:
+
+- `public/vendor/shadow-theme/shadow-theme.css`
+- `public/vendor/shadow-theme/shadow-theme.js`
+
+When these files exist, Shadow Theme will load them automatically.
+
+### 4. Install frontend dependencies (optional if you use published assets)
 
 ```bash
 npm install alpinejs daisyui
@@ -67,7 +74,12 @@ npm install alpinejs daisyui
 
 ## Tailwind v4 + daisyUI Integration
 
-Shadow Theme renders Blade views, so your application Tailwind build must scan the package views.
+Shadow Theme can run in two modes:
+
+1. Published pre-built assets
+2. Host application Vite/Tailwind integration
+
+If you prefer the host application pipeline, Shadow Theme renders Blade views, so your application Tailwind build must scan the package views.
 
 Update your Tailwind v4 entry CSS (example: `resources/css/app.css`):
 
@@ -89,6 +101,12 @@ import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;
 Alpine.start();
+```
+
+You can force Shadow Theme to use the host application's build instead of published assets with:
+
+```dotenv
+SHADOW_THEME_PREFER_PUBLISHED_ASSETS=false
 ```
 
 ## Configuration

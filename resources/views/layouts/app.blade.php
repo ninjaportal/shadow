@@ -36,7 +36,12 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     @endif
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @if($shadowTheme['usePublishedAssets'] ?? false)
+        <link rel="stylesheet" href="{{ asset('vendor/shadow-theme/shadow-theme.css') }}">
+        <script type="module" src="{{ asset('vendor/shadow-theme/shadow-theme.js') }}"></script>
+    @else
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @endif
     <style>
         [x-cloak] { display: none !important; }
         :root {

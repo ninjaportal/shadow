@@ -10,19 +10,28 @@ use NinjaPortal\Shadow\ShadowServiceProvider;
 class InstallCommand extends Command
 {
     protected $signature = 'shadow:install
-        {--publish-config : Publish the shadow-theme config file}
-        {--publish-views : Publish the shadow-theme views for customization}';
+        {--publish-config : Publish the Shadow Theme config file}
+        {--publish-assets : Publish the pre-built Shadow Theme frontend assets}
+        {--publish-views : Publish the Shadow Theme Blade views for customization}';
 
     protected $description = 'Install the Shadow Theme package and seed branding settings';
 
     public function handle(): int
     {
-        $this->info('Installing Shadow Theme...');
+        $this->components->info('Installing Shadow Theme...');
 
         if ((bool) $this->option('publish-config')) {
             $this->call('vendor:publish', [
                 '--provider' => ShadowServiceProvider::class,
                 '--tag' => 'shadow-theme-config',
+            ]);
+        }
+
+        if ((bool) $this->option('publish-assets')) {
+            $this->call('vendor:publish', [
+                '--provider' => ShadowServiceProvider::class,
+                '--tag' => 'shadow-theme-assets',
+                '--force' => true,
             ]);
         }
 

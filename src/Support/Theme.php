@@ -2,6 +2,8 @@
 
 namespace NinjaPortal\Shadow\Support;
 
+use Illuminate\Support\Facades\File;
+
 class Theme
 {
     public function routePrefix(): string
@@ -36,6 +38,16 @@ class Theme
         }
 
         return $this->path('dashboard');
+    }
+
+    public function usesPublishedAssets(): bool
+    {
+        if (! (bool) config('shadow-theme.assets.prefer_published', true)) {
+            return false;
+        }
+
+        return File::exists(public_path('vendor/shadow-theme/shadow-theme.css'))
+            && File::exists(public_path('vendor/shadow-theme/shadow-theme.js'));
     }
 
     /**
